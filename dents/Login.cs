@@ -52,10 +52,16 @@ namespace dents
 
                 if(reader.Read())
                 {
-                    string user = reader.GetString("firstname") + " " + reader.GetString("lastname");
-                    MessageBox.Show("Welcome, " + user + "!", "Login Successful");
+                    User.fullname = reader.GetString("firstname") + " " + reader.GetString("lastname");
+                    User.id = reader.GetString("id");
 
+                    MessageBox.Show("Welcome, " + User.fullname + "!", "Login Successful");
+
+                    this.Hide();
+                    username main = new username();
+                    main.Show();
                 }
+
                 else
                 {
                     MessageBox.Show("Username or Password is Incorrect" , "Login Error");

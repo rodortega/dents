@@ -11,3 +11,4 @@ c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.Login.resources
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\bin\Debug\MySql.Data.dll
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\bin\Debug\MySql.Data.xml
+C:\Users\Elise Andrea Lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.username.resources
