@@ -35,8 +35,7 @@ namespace dents
                 return;
             }
 
-            Connection connect      = new Connection();
-            MySqlConnection mysql   = new MySqlConnection(connect.credentials);
+            MySqlConnection mysql   = new MySqlConnection(Connection.credentials);
             MySqlCommand cmd        = new MySqlCommand();
 
             cmd.CommandText = "SELECT * FROM users WHERE username=@username AND password=@password";
@@ -54,11 +53,14 @@ namespace dents
                 {
                     User.fullname = reader.GetString("firstname") + " " + reader.GetString("lastname");
                     User.id = reader.GetString("id");
+                   
+                    Log.addToLog("LOGIN", "[ USER ID: " + User.id + " ]");
 
                     MessageBox.Show("Welcome, " + User.fullname + "!", "Login Successful");
 
+               
                     this.Hide();
-                    username main = new username();
+                    Main main = new Main();
                     main.Show();
                 }
 
@@ -71,9 +73,14 @@ namespace dents
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(),"Oops!");
+                MessageBox.Show("MySQL and/or Mysql Connector is not installed/opened. \n " + ex,"Oops!");
             }
             
+        }
+
+        private void exit_application(Object sender, FormClosedEventArgs e)
+        {
+            Application.ExitThread();
         }
     }
 }

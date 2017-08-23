@@ -8,6 +8,6 @@ namespace dents
 {
     public class Connection
     {
-        public string credentials = "server=localhost;database=dents;uid=root;pwd=;";
+        public static string credentials = "server=localhost;database=dents;uid=root;pwd=;";
     }
 }

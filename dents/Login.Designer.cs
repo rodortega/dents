@@ -108,8 +108,10 @@
             this.Controls.Add(this.password);
             this.Controls.Add(this.username);
             this.Name = "Login";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DENTS • LOGIN";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.exit_application);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
