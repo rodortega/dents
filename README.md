@@ -4,11 +4,12 @@ Dental Electronic Notification and Transaction System
 
 Screenshots:
 
+#### **Login Screen**
 ![Alt text](screenshots/login.PNG?raw=true "Login Screen")
-Login Screen
 
+#### **Dashboard Screen**
 ![Alt text](screenshots/dashboard.PNG?raw=true "Login Screen")
-Dashboard Screen
+
 
 What's done?
 1. Simple Database
