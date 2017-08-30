@@ -14,10 +14,10 @@ namespace dents
             MySqlConnection mysql = new MySqlConnection(Connection.credentials);
             MySqlCommand cmd = new MySqlCommand();
 
-            cmd.CommandText = "INSERT INTO logs(title,description,user,datetime_create) VALUES(@title,@description,@user,@datetime_create)";
+            cmd.CommandText = "INSERT INTO logs(title,description,user_id,datetime_create) VALUES(@title,@description,@user,@datetime_create)";
             cmd.Parameters.AddWithValue("@title", title);
             cmd.Parameters.AddWithValue("@description", description);
-            cmd.Parameters.AddWithValue("@user", User.fullname);
+            cmd.Parameters.AddWithValue("@user", User.id);
             cmd.Parameters.AddWithValue("@datetime_create", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             cmd.Connection = mysql;
 
