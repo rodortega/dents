@@ -147,7 +147,7 @@ namespace dents
             schedule_textbox.Text = DateTime.Now.ToString();
         }
 
-        private void appointment_list_SelectedIndexChanged(object sender, EventArgs e)
+        private void appointment_list_SelectedIndexChanged(Object sender, EventArgs e)
         {
             if (appointment_list.SelectedItems.Count == 0)
             {
@@ -164,7 +164,7 @@ namespace dents
             description_label.Text  = item.SubItems[4].Text;
         }
 
-        private void acknowledge_click(object sender, EventArgs e)
+        private void acknowledge_click(Object sender, EventArgs e)
         {
             if (appointment_list.SelectedItems.Count == 0)
             {
@@ -198,7 +198,7 @@ namespace dents
             }
         }
 
-        private void refresh_click(object sender, EventArgs e)
+        private void refresh_click(Object sender, EventArgs e)
         {
             panel1.Hide();
             load_appointment();
@@ -265,6 +265,14 @@ namespace dents
 
             Patients patient = new Patients();
             patient.Show();
+        }
+
+        private void logs_click(Object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Logs logs = new Logs();
+            logs.Show();
         }
 
         private void exit_application(Object sender, FormClosedEventArgs e)

@@ -368,6 +368,7 @@
             this.materialRaisedButton4.TabIndex = 10;
             this.materialRaisedButton4.Text = "LOGS";
             this.materialRaisedButton4.UseVisualStyleBackColor = true;
+            this.materialRaisedButton4.Click += new System.EventHandler(this.logs_click);
             // 
             // materialRaisedButton5
             // 
