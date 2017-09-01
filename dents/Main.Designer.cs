@@ -384,6 +384,7 @@
             this.materialRaisedButton5.TabIndex = 11;
             this.materialRaisedButton5.Text = "SETTINGS";
             this.materialRaisedButton5.UseVisualStyleBackColor = true;
+            this.materialRaisedButton5.Click += new System.EventHandler(this.settings_click);
             // 
             // materialRaisedButton6
             // 

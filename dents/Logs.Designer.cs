@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Logs));
             this.logs_list = new MaterialSkin.Controls.MaterialListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,7 +56,7 @@
             this.columnHeader4,
             this.columnHeader5});
             this.logs_list.Depth = 0;
-            this.logs_list.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logs_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.logs_list.FullRowSelect = true;
             this.logs_list.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.logs_list.Location = new System.Drawing.Point(349, 74);
@@ -169,7 +170,7 @@
             this.materialDivider1.Location = new System.Drawing.Point(337, 85);
             this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(3, 500);
+            this.materialDivider1.Size = new System.Drawing.Size(3, 550);
             this.materialDivider1.TabIndex = 46;
             this.materialDivider1.Text = "materialDivider1";
             // 
@@ -187,12 +188,12 @@
             this.search_button.AutoSize = true;
             this.search_button.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.search_button.Depth = 0;
-            this.search_button.Icon = null;
-            this.search_button.Location = new System.Drawing.Point(252, 235);
+            this.search_button.Icon = ((System.Drawing.Image)(resources.GetObject("search_button.Icon")));
+            this.search_button.Location = new System.Drawing.Point(224, 242);
             this.search_button.MouseState = MaterialSkin.MouseState.HOVER;
             this.search_button.Name = "search_button";
             this.search_button.Primary = true;
-            this.search_button.Size = new System.Drawing.Size(73, 36);
+            this.search_button.Size = new System.Drawing.Size(101, 36);
             this.search_button.TabIndex = 48;
             this.search_button.Text = "SEARCH";
             this.search_button.UseVisualStyleBackColor = true;

@@ -53,6 +53,7 @@ namespace dents
                 {
                     User.fullname = reader.GetString("firstname") + " " + reader.GetString("lastname");
                     User.id = reader.GetString("id");
+                    User.password = reader.GetString("password");
                    
                     Log.addToLog("LOGIN", "[ USER ID: " + User.id + " ]");
 

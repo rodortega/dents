@@ -15,3 +15,4 @@ C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\
 C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.Patients.resources
 C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.AddPatient.resources
 C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.Logs.resources
+C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.Settings.resources

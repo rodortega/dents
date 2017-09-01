@@ -275,6 +275,14 @@ namespace dents
             logs.Show();
         }
 
+        private void settings_click(Object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Settings setting = new Settings();
+            setting.Show();
+        }
+
         private void exit_application(Object sender, FormClosedEventArgs e)
         {
             Login login = new Login();

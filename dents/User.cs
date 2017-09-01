@@ -10,5 +10,6 @@ namespace dents
     {
         public static string fullname { get; set; }
         public static string id { get; set; }
+        public static string password { get; set; }
     }
 }
