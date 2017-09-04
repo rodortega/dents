@@ -29,6 +29,15 @@ namespace dents
             load_user();
             load_purpose();
             panel1.Hide();
+            panel3.Hide();
+            load_users();
+
+
+            if (User.id != "1")
+            {
+                delete_user_button.Visible = false;
+                panel4.Hide();
+            }
         }
 
         private void load_user()
@@ -100,6 +109,43 @@ namespace dents
             }
         }
 
+        private void load_users()
+        {
+            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
+            MySqlCommand cmd = new MySqlCommand();
+
+            cmd.CommandText = "SELECT id, username, firstname, lastname FROM users WHERE id != 1";
+            cmd.Connection = mysql;
+
+            try
+            {
+                mysql.Open();
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                ListViewItem list;
+
+                users_list.ListViewItemSorter = null;
+                users_list.BeginUpdate();
+
+                while (reader.Read())
+                {
+                    list = new ListViewItem(reader.GetString("id"));
+                    list.SubItems.Add(reader.GetString("username"));
+                    list.SubItems.Add(reader.GetString("firstname") + " " + reader.GetString("firstname"));
+
+                    users_list.Items.Add(list);
+                }
+
+                users_list.EndUpdate();
+                mysql.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cannot Load Users! \n" + ex.ToString(), "Oops!");
+            }
+        }
+
         private void purpose_list_click(Object sender, EventArgs e)
         {
             if (procedure_list.SelectedItems.Count > 0)
@@ -110,6 +156,50 @@ namespace dents
                 procedure_name_textbox.Text = item.SubItems[1].Text;
                 procedure_amount_textbox.Text = item.SubItems[2].Text;
                 panel1.Show();
+            }
+        }
+
+        private void users_list_click(Object sender, EventArgs e)
+        {
+            if (users_list.SelectedItems.Count > 0)
+            {
+                ListViewItem item = users_list.SelectedItems[0];
+
+                users_id_label.Text = item.SubItems[0].Text;
+                users_username_label.Text = item.SubItems[1].Text;
+                users_fullname_label.Text = item.SubItems[2].Text;
+                panel3.Show();
+            }
+        }
+
+        private void delete_users_click(Object sender, EventArgs e)
+        {
+            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
+            MySqlCommand cmd = new MySqlCommand();
+
+            cmd.CommandText = "DELETE FROM users WHERE id = @id";
+            cmd.Parameters.AddWithValue("@id", users_id_label.Text);
+            cmd.Connection = mysql;
+
+            try
+            {
+                mysql.Open();
+                cmd.ExecuteNonQuery();
+                mysql.Close();
+
+                MessageBox.Show("User Deleted.", "Success");
+
+                ListViewItem item = users_list.SelectedItems[0];
+
+                item.Remove();
+
+                panel3.Hide();
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cannot Save Procedure. \n" + ex.ToString(), "Oops!");
             }
         }
 
@@ -181,6 +271,52 @@ namespace dents
             catch (Exception ex)
             {
                 MessageBox.Show("Cannot Save Procedure. \n" + ex.ToString(), "Oops!");
+            }
+        }
+
+        private void save_new_users_click(Object sender, EventArgs e)
+        {
+            if (new_firstname_label.Text == "" || new_lastname_label.Text == "" || new_username_label.Text == "" || new_password_label.Text == "")
+            {
+                MessageBox.Show("All fields are required.", "Saving Error");
+                return;
+            }
+
+            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
+            MySqlCommand cmd = new MySqlCommand();
+
+            cmd.CommandText = "INSERT INTO users(username, password, firstname, lastname) VALUES(@username, @password, @firstname, @lastname)";
+            cmd.Parameters.AddWithValue("@username", new_username_label.Text);
+            cmd.Parameters.AddWithValue("@password", new_password_label.Text);
+            cmd.Parameters.AddWithValue("@firstname", new_firstname_label.Text);
+            cmd.Parameters.AddWithValue("@lastname", new_lastname_label.Text);
+            cmd.Connection = mysql;
+
+            try
+            {
+                mysql.Open();
+                cmd.ExecuteNonQuery();
+                mysql.Close();
+
+                MessageBox.Show("User Saved.", "Success");
+
+                ListViewItem list;
+
+                list = new ListViewItem(cmd.LastInsertedId.ToString());
+                list.SubItems.Add(new_username_label.Text);
+                list.SubItems.Add(new_firstname_label.Text + " " + new_lastname_label.Text);
+
+                users_list.Items.Add(list);
+
+                new_firstname_label.Text    = "";
+                new_lastname_label.Text     = "";
+                new_username_label.Text     = "";
+                new_password_label.Text     = "";
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cannot Save User. \n" + ex.ToString(), "Oops!");
             }
         }
 

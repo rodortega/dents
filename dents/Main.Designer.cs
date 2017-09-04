@@ -66,6 +66,7 @@
             this.purpose_combobox = new System.Windows.Forms.ComboBox();
             this.description_textbox = new System.Windows.Forms.TextBox();
             this.save_button = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -331,7 +332,7 @@
             // 
             this.materialDivider1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialDivider1.Depth = 0;
-            this.materialDivider1.Location = new System.Drawing.Point(457, 311);
+            this.materialDivider1.Location = new System.Drawing.Point(448, 311);
             this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider1.Name = "materialDivider1";
             this.materialDivider1.Size = new System.Drawing.Size(490, 3);
@@ -441,6 +442,7 @@
             // materialLabel9
             // 
             this.materialLabel9.AutoSize = true;
+            this.materialLabel9.BackColor = System.Drawing.Color.Transparent;
             this.materialLabel9.Depth = 0;
             this.materialLabel9.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -467,6 +469,7 @@
             // materialLabel10
             // 
             this.materialLabel10.AutoSize = true;
+            this.materialLabel10.BackColor = System.Drawing.Color.Transparent;
             this.materialLabel10.Depth = 0;
             this.materialLabel10.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -542,11 +545,23 @@
             this.save_button.UseVisualStyleBackColor = true;
             this.save_button.Click += new System.EventHandler(this.save_click);
             // 
+            // materialDivider3
+            // 
+            this.materialDivider3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialDivider3.Depth = 0;
+            this.materialDivider3.Location = new System.Drawing.Point(448, 79);
+            this.materialDivider3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider3.Name = "materialDivider3";
+            this.materialDivider3.Size = new System.Drawing.Size(3, 530);
+            this.materialDivider3.TabIndex = 31;
+            this.materialDivider3.Text = "materialDivider3";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 666);
+            this.Controls.Add(this.materialDivider3);
             this.Controls.Add(this.save_button);
             this.Controls.Add(this.description_textbox);
             this.Controls.Add(this.purpose_combobox);
@@ -618,5 +633,6 @@
         private System.Windows.Forms.ComboBox purpose_combobox;
         private System.Windows.Forms.TextBox description_textbox;
         private MaterialSkin.Controls.MaterialRaisedButton save_button;
+        private MaterialSkin.Controls.MaterialDivider materialDivider3;
     }
 }
