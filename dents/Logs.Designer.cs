@@ -176,6 +176,8 @@
             // 
             // users_combobox
             // 
+            this.users_combobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.users_combobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.users_combobox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.users_combobox.FormattingEnabled = true;
             this.users_combobox.Location = new System.Drawing.Point(125, 202);

@@ -221,6 +221,12 @@ namespace dents
                 return;
             }
 
+            if (patients_combobox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an existing patient first","Saving Error");
+                return;
+            }
+
             MySqlConnection mysql = new MySqlConnection(Connection.credentials);
             MySqlCommand cmd = new MySqlCommand();
 

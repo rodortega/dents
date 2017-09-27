@@ -114,6 +114,12 @@ namespace dents
 
         private void search_click(Object sender, EventArgs e)
         {
+            if (users_combobox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select an exisiting user first.", "Search Error");
+                return;
+            }
+
             DateTime datefrom_pretty = DateTime.Parse(datefrom_textbox.Text);
             DateTime dateto_pretty = DateTime.Parse(dateto_textbox.Text).AddDays(1);
 

@@ -511,7 +511,6 @@
             this.purpose_combobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.purpose_combobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.purpose_combobox.BackColor = System.Drawing.Color.White;
-            this.purpose_combobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.purpose_combobox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.purpose_combobox.FormattingEnabled = true;
             this.purpose_combobox.Location = new System.Drawing.Point(612, 474);
