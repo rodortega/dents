@@ -37,40 +37,26 @@ namespace dents
         {
             appointment_list.Items.Clear();
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT appointments.*,  patients.firstname, patients.lastname, patients.phone, patients.address FROM appointments LEFT JOIN patients on patients.id = appointments.patient_id WHERE appointments.status = 1 ORDER BY appointments.schedule ASC";
-            cmd.Connection = mysql;
-
-            // make listview faster by BeginUpdate() then EndUpdate() after
-            appointment_list.ListViewItemSorter = null;
-            appointment_list.BeginUpdate();
-
             try
             {
-                mysql.Open();
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.AppointmentController appointment = new Controller.AppointmentController();
+                DataTable data = appointment.GetAllAppointments();
 
                 ListViewItem list;
-
-                while (reader.Read())
+                foreach(DataRow row in data.Rows)
                 {
-                    // format datetime to pretty format
-                    string schedule = reader.GetString("schedule");
+                    string schedule = row["schedule"].ToString();
                     DateTime schedule_pretty = DateTime.Parse(schedule);
-                    // add everything from DB to listview
-                    list = new ListViewItem(reader.GetString("id"));
-                    list.SubItems.Add(reader.GetString("firstname") + ' ' + reader.GetString("lastname"));
+
+                    list = new ListViewItem(row["id"].ToString());
+                    list.SubItems.Add(row["firstname"].ToString() + ' ' + row["lastname"]);
                     list.SubItems.Add(schedule_pretty.ToString("MMM dd yyyy, hh:mm tt"));
-                    list.SubItems.Add(reader.GetString("title"));
-                    list.SubItems.Add(reader.GetString("description"));
+                    list.SubItems.Add(row["title"].ToString());
+                    list.SubItems.Add(row["description"].ToString());
                     appointment_list.Items.Add(list);
-                    
                 }
-                // EndUpdate triggers the drawing of the listview
+
                 appointment_list.EndUpdate();
-                mysql.Close();
             }
 
             catch (Exception ex)
@@ -81,30 +67,21 @@ namespace dents
 
         private void load_patients()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT id, firstname, lastname FROM patients";
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.PatientController patient = new Controller.PatientController();
+                DataTable data = patient.getAllPatients();
 
                 Dictionary<string, string> source = new Dictionary<string, string>();
 
-                while (reader.Read())
+                foreach (DataRow row in data.Rows)
                 {
-                    source.Add(reader.GetString("id"), reader.GetString("firstname") + " " + reader.GetString("lastname"));
+                    source.Add(row["id"].ToString(), row["firstname"].ToString() + " " + row["lastname"].ToString());
                 }
 
                 patients_combobox.DataSource = new BindingSource(source, null);
                 patients_combobox.DisplayMember = "Value";
                 patients_combobox.ValueMember = "Key";
-
-                mysql.Close();
             }
             catch (Exception ex)
             {
@@ -114,25 +91,17 @@ namespace dents
 
         private void load_purpose()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT procedure_name FROM procedures";
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
+                Controller.PurposeController purpose = new Controller.PurposeController();
+                DataTable dt = purpose.getAllPurpose();
 
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                foreach (DataRow row in dt.Rows)
                 {
-                    purpose_combobox.Items.Add(reader.GetString("procedure_name"));
+                    purpose_combobox.Items.Add(row["procedure_name"].ToString());
                 }
-
-                mysql.Close();
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Cannot Load Procedures \n" + ex.ToString(), "Oops!");
@@ -171,19 +140,11 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "UPDATE appointments SET status = 0 WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", id_label.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
-
+                Controller.AppointmentController appointment = new Controller.AppointmentController();
+                appointment.updateAppointment(Convert.ToInt32(id_label.Text));
+                    
                 appointment_list.SelectedItems[0].Remove();
 
                 Log.addToLog("ACKNOWLEDGE APPOINTMENT","[ ACK ID: "+id_label.Text+" ][ PATIENT ID: "+ id_label.Text + " ]");
@@ -207,7 +168,7 @@ namespace dents
         private void save_click(Object sender, EventArgs e)
         {
             string schedule_date = schedule_textbox.Text;
-            DateTime schedule = DateTime.Parse(schedule_date);
+            DateTime sched = DateTime.Parse(schedule_date);
 
             if (purpose_combobox.Text == "" || patients_combobox.Text == "")
             {
@@ -215,7 +176,7 @@ namespace dents
                 return;
             }
 
-            if (schedule <= DateTime.Now)
+            if (sched <= DateTime.Now)
             {
                 MessageBox.Show("Schedule should not be earlier than today", "Saving Error");
                 return;
@@ -227,22 +188,16 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "INSERT INTO appointments(title,description,schedule,patient_id,status) VALUES (@title,@description,@schedule,@patient_id,@status)";
-            cmd.Parameters.AddWithValue("@title", purpose_combobox.Text);
-            cmd.Parameters.AddWithValue("@description", description_textbox.Text);
-            cmd.Parameters.AddWithValue("@schedule", schedule.ToString("yyyy-MM-dd HH:mm:ss"));
-            cmd.Parameters.AddWithValue("@patient_id", ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key);
-            cmd.Parameters.AddWithValue("@status", "1");
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string title = purpose_combobox.Text;
+                string description = description_textbox.Text;
+                string schedule = sched.ToString("yyyy-MM-dd HH:mm:ss");
+                string patient_id = ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key;
+                string status = "1";
+
+                Controller.AppointmentController appointment = new Controller.AppointmentController();
+                appointment.addAppointment(title,description,schedule,patient_id,status);
 
                 Log.addToLog("ADD APPOINTMENT", "[ PATIENT ID: " + ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key + " ]");
 

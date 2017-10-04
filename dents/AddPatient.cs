@@ -62,28 +62,22 @@ namespace dents
                 return;
             }
 
-            DateTime birthday = DateTime.Parse(birthday_textbox.Text);
-
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "INSERT INTO patients (firstname, lastname, phone, address, birthday, gender, status) VALUES (@firstname, @lastname, @phone, @address, @birthday, @gender, @status)";
-            cmd.Parameters.AddWithValue("@firstname", firstname_textbox.Text);
-            cmd.Parameters.AddWithValue("@lastname", lastame_textbox.Text);
-            cmd.Parameters.AddWithValue("@phone", phone_textbox.Text);
-            cmd.Parameters.AddWithValue("@address", address_textbox.Text);
-            cmd.Parameters.AddWithValue("@birthday", birthday.ToString("yyyy-MM-dd"));
-            cmd.Parameters.AddWithValue("@gender", ((KeyValuePair<string, string>)gender_combobox.SelectedItem).Key);
-            cmd.Parameters.AddWithValue("@status", ((KeyValuePair<string, string>)status_combobox.SelectedItem).Key);
-            cmd.Connection = mysql;
+            DateTime bday = DateTime.Parse(birthday_textbox.Text);
 
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string firstname = firstname_textbox.Text;
+                string lastname = lastame_textbox.Text;
+                string phone = phone_textbox.Text;
+                string address = address_textbox.Text;
+                string birthday = bday.ToString("yyyy-MM-dd");
+                string gender = ((KeyValuePair<string, string>)gender_combobox.SelectedItem).Key;
+                string status = ((KeyValuePair<string, string>)status_combobox.SelectedItem).Key;
 
-                Log.addToLog("ADD PATIENT", "[ PATIENT ID: " + cmd.LastInsertedId.ToString() + " ]");
+                Controller.PatientController patient = new Controller.PatientController();
+                int last_id = patient.addPatient(firstname, lastname, phone, address, birthday, gender, status);
+
+                Log.addToLog("ADD PATIENT", "[ PATIENT ID: " + last_id.ToString() + " ]");
 
                 MessageBox.Show("Profile update successful", "Successful");
                 this.Close();

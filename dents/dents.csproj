@@ -65,6 +65,11 @@
       <DependentUpon>AddTransaction.cs</DependentUpon>
     </Compile>
     <Compile Include="Connection.cs" />
+    <Compile Include="Controller\AppointmentController.cs" />
+    <Compile Include="Controller\HistoryController.cs" />
+    <Compile Include="Controller\PatientController.cs" />
+    <Compile Include="Controller\PurposeController.cs" />
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -84,6 +89,11 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\AppointmentModel.cs" />
+    <Compile Include="Model\HistoryModel.cs" />
+    <Compile Include="Model\PatientModel.cs" />
+    <Compile Include="Model\PurposeModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Patients.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +153,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

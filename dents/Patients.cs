@@ -60,35 +60,25 @@ namespace dents
 
         private void load_patient()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT id, firstname, lastname FROM patients";
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.PatientController patient = new Controller.PatientController();
+                DataTable data = patient.getAllPatients();
 
                 Dictionary<string, string> source = new Dictionary<string, string>();
 
-                while (reader.Read())
+                foreach (DataRow row in data.Rows)
                 {
-                    source.Add(reader.GetString("id"), reader.GetString("firstname") + " " + reader.GetString("lastname"));
+                    source.Add(row["id"].ToString(), row["firstname"].ToString() + " " + row["lastname"].ToString());
                 }
 
                 patients_combobox.DataSource = new BindingSource(source, null);
                 patients_combobox.DisplayMember = "Value";
                 patients_combobox.ValueMember = "Key";
-
-                mysql.Close();
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Cannot Load Procedures \n" + ex.ToString(), "Oops!");
+                MessageBox.Show("Cannot Load Patients \n" + ex.ToString(), "Oops!");
             }
         }
 
@@ -134,29 +124,21 @@ namespace dents
 
         private void load_profile(string patient_id)
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT * FROM patients WHERE id = @patient_id";
-            cmd.Parameters.AddWithValue("@patient_id",patient_id);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
+                Controller.PatientController patient = new Controller.PatientController();
+                DataTable data = patient.getPatientById(Convert.ToInt32(patient_id));
 
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while(reader.Read())
+                foreach(DataRow row in data.Rows)
                 {
-                    id_textbox.Text                 = reader.GetString("id");
-                    firstname_textbox.Text          = reader.GetString("firstname");
-                    lastame_textbox.Text            = reader.GetString("lastname");
-                    address_textbox.Text            = reader.GetString("address");
-                    phone_textbox.Text              = reader.GetString("phone");
-                    gender_combobox.SelectedValue   = reader.GetString("gender");
-                    status_combobox.SelectedValue   = reader.GetString("status");
-                    birthday_textbox.Text           = reader.GetString("birthday");
+                    id_textbox.Text                 = row["id"].ToString();
+                    firstname_textbox.Text          = row["firstname"].ToString();
+                    lastame_textbox.Text            = row["lastname"].ToString();
+                    address_textbox.Text            = row["address"].ToString();
+                    phone_textbox.Text              = row["phone"].ToString();
+                    gender_combobox.SelectedValue   = row["gender"].ToString();
+                    status_combobox.SelectedValue   = row["status"].ToString();
+                    birthday_textbox.Text           = row["birthday"].ToString();
                 }
                 panel1.Show();
                 toggle_profile(false);
@@ -174,38 +156,29 @@ namespace dents
         {
             transaction_list.Items.Clear();
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT * FROM history WHERE patient_id = @patient_id";
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.HistoryController history = new Controller.HistoryController();
+                DataTable data = history.getHistoryByPatientId(Convert.ToInt32(patient_id));
 
                 ListViewItem list;
 
                 transaction_list.ListViewItemSorter = null;
                 transaction_list.BeginUpdate();
 
-                while (reader.Read())
+                foreach(DataRow row in data.Rows)
                 {
-                    string datetime_create = reader.GetString("datetime_create");
+                    string datetime_create = row["datetime_create"].ToString();
                     DateTime datetime = DateTime.Parse(datetime_create);
 
                     list = new ListViewItem(datetime.ToString("MM/dd/yy, hh:mm tt"));
-                    list.SubItems.Add(reader.GetString("teeth_number") + ":" +reader.GetString("procedure_name"));
-                    list.SubItems.Add(reader.GetString("amount"));
+                    list.SubItems.Add(row["teeth_number"].ToString() + ":" + row["procedure_name"].ToString());
+                    list.SubItems.Add(row["amount"].ToString());
 
                     transaction_list.Items.Add(list);
                 }
 
                 transaction_list.EndUpdate();
-                mysql.Close();
             }
             catch (Exception ex)
             {
@@ -217,36 +190,27 @@ namespace dents
         {
             appointment_list.Items.Clear();
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT * FROM appointments WHERE patient_id = @patient_id";
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.AppointmentController appointment = new Controller.AppointmentController();
+                DataTable data = appointment.getAppointmentByPatientId(Convert.ToInt32(patient_id));
 
                 ListViewItem list;
 
                 appointment_list.ListViewItemSorter = null;
                 appointment_list.BeginUpdate();
 
-                while (reader.Read())
+                foreach(DataRow row in data.Rows)
                 {
-                    string datetime_create = reader.GetString("schedule");
+                    string datetime_create = row["schedule"].ToString();
                     DateTime datetime = DateTime.Parse(datetime_create);
 
                     list = new ListViewItem(datetime.ToString("MM/dd/yy, hh:mm tt"));
-                    list.SubItems.Add(reader.GetString("title"));
+                    list.SubItems.Add(row["title"].ToString());
                     appointment_list.Items.Add(list);
                 }
 
                 appointment_list.EndUpdate();
-                mysql.Close();
             }
             catch (Exception ex)
             {
@@ -269,28 +233,21 @@ namespace dents
                 return;
             }
 
-            DateTime birthday = DateTime.Parse(birthday_textbox.Text);
-            string patient_id = ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key;
-
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "UPDATE patients SET firstname = @firstname, lastname = @lastname, phone = @phone, address = @address, birthday = @birthday, gender = @gender, status = @status WHERE id = @patient_id";
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
-            cmd.Parameters.AddWithValue("@firstname", firstname_textbox.Text);
-            cmd.Parameters.AddWithValue("@lastname", lastame_textbox.Text);
-            cmd.Parameters.AddWithValue("@phone", phone_textbox.Text);
-            cmd.Parameters.AddWithValue("@address", address_textbox.Text);
-            cmd.Parameters.AddWithValue("@birthday", birthday.ToString("yyyy-MM-dd"));
-            cmd.Parameters.AddWithValue("@gender", ((KeyValuePair<string, string>)gender_combobox.SelectedItem).Key);
-            cmd.Parameters.AddWithValue("@status", ((KeyValuePair<string, string>)status_combobox.SelectedItem).Key);
-            cmd.Connection = mysql;
-
+            DateTime bday = DateTime.Parse(birthday_textbox.Text);
+            
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string patient_id = ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key;
+                string firstname = firstname_textbox.Text;
+                string lastname = lastame_textbox.Text;
+                string phone = phone_textbox.Text;
+                string address = address_textbox.Text;
+                string birthday = bday.ToString("yyyy-MM-dd");
+                string gender = ((KeyValuePair<string, string>)gender_combobox.SelectedItem).Key;
+                string status = ((KeyValuePair<string, string>)status_combobox.SelectedItem).Key;
+
+                Controller.PatientController patient = new Controller.PatientController();
+                patient.updatePatient(patient_id, firstname, lastname, phone, address, birthday, gender, status);
 
                 Log.addToLog("UPDATE PATIENT", "[ PATIENT ID: " + patient_id + " ]");
 

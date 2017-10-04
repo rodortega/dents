@@ -35,30 +35,20 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql   = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd        = new MySqlCommand();
-
-            cmd.CommandText = "SELECT * FROM users WHERE username=@username AND password=@password";
-            cmd.Parameters.AddWithValue("@username", username.Text);
-            cmd.Parameters.AddWithValue("@password", password.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
+                Controller.UserController user = new Controller.UserController();
+                DataTable data = user.getUserByCredential(username.Text, password.Text);
 
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                if(reader.Read())
+                if(data.Rows.Count >= 1)
                 {
-                    User.fullname = reader.GetString("firstname") + " " + reader.GetString("lastname");
-                    User.id = reader.GetString("id");
-                    User.password = reader.GetString("password");
+                    User.fullname = data.Rows[0]["firstname"].ToString() + " " + data.Rows[0]["lastname"].ToString();
+                    User.id = data.Rows[0]["id"].ToString();
+                    User.password = data.Rows[0]["password"].ToString();
                    
                     Log.addToLog("LOGIN", "[ USER ID: " + User.id + " ]");
 
                     MessageBox.Show("Welcome, " + User.fullname + "!", "Login Successful");
-
                
                     this.Hide();
                     Main main = new Main();
@@ -69,8 +59,6 @@ namespace dents
                 {
                     MessageBox.Show("Username or Password is Incorrect" , "Login Error");
                 }
-
-                mysql.Close();
             }
             catch(Exception ex)
             {

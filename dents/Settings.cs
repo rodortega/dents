@@ -42,29 +42,19 @@ namespace dents
 
         private void load_user()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT * FROM users WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", User.id);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
+                Controller.UserController user = new Controller.UserController();
+                DataTable data = user.getUserById(Convert.ToInt32(User.id));
 
-                MySqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                foreach(DataRow row in data.Rows)
                 {
-                    id_label.Text = reader.GetString("id");
+                    id_label.Text = row["id"].ToString();
 
-                    username_textbox.Text   = reader.GetString("username");
-                    firstname_textbox.Text  = reader.GetString("firstname");
-                    lastname_textbox.Text   = reader.GetString("lastname");
+                    username_textbox.Text   = row["username"].ToString();
+                    firstname_textbox.Text  = row["firstname"].ToString();
+                    lastname_textbox.Text   = row["lastname"].ToString();
                 }
-
-                mysql.Close();
             }
 
             catch (Exception ex)
@@ -75,34 +65,28 @@ namespace dents
 
         private void load_purpose()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT id, procedure_name, amount FROM procedures";
-            cmd.Connection = mysql;
-
-            ListViewItem list;
-
-            procedure_list.ListViewItemSorter = null;
-            procedure_list.BeginUpdate();
-
             try
             {
-                mysql.Open();
+                Controller.PurposeController purpose = new Controller.PurposeController();
+                DataTable dt = purpose.getAllPurpose();
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                ListViewItem list;
 
-                while (reader.Read())
+                procedure_list.ListViewItemSorter = null;
+                procedure_list.BeginUpdate();
+
+                foreach (DataRow row in dt.Rows)
                 {
-                    list = new ListViewItem(reader.GetString("id"));
-                    list.SubItems.Add(reader.GetString("procedure_name"));
-                    list.SubItems.Add(reader.GetString("amount"));
+                    list = new ListViewItem(row["id"].ToString());
+                    list.SubItems.Add(row["procedure_name"].ToString());
+                    list.SubItems.Add(row["amount"].ToString());
 
                     procedure_list.Items.Add(list);
                 }
+
                 procedure_list.EndUpdate();
-                mysql.Close();
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Cannot Load Procedures \n" + ex.ToString(), "Oops!");
@@ -111,34 +95,26 @@ namespace dents
 
         private void load_users()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT id, username, firstname, lastname FROM users WHERE id != 1";
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.UserController user = new Controller.UserController();
+                DataTable data = user.getOtherUsers();
 
                 ListViewItem list;
 
                 users_list.ListViewItemSorter = null;
                 users_list.BeginUpdate();
 
-                while (reader.Read())
+                foreach(DataRow row in data.Rows)
                 {
-                    list = new ListViewItem(reader.GetString("id"));
-                    list.SubItems.Add(reader.GetString("username"));
-                    list.SubItems.Add(reader.GetString("firstname") + " " + reader.GetString("firstname"));
+                    list = new ListViewItem(row["id"].ToString());
+                    list.SubItems.Add(row["username"].ToString());
+                    list.SubItems.Add(row["firstname"].ToString() + " " + row["firstname"].ToString());
 
                     users_list.Items.Add(list);
                 }
 
                 users_list.EndUpdate();
-                mysql.Close();
             }
             catch (Exception ex)
             {
@@ -174,18 +150,10 @@ namespace dents
 
         private void delete_users_click(Object sender, EventArgs e)
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "DELETE FROM users WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", users_id_label.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                Controller.UserController user = new Controller.UserController();
+                user.deleteUser(Convert.ToInt32(users_id_label.Text));
 
                 MessageBox.Show("User Deleted.", "Success");
 
@@ -205,18 +173,10 @@ namespace dents
 
         private void delete_procedure_click(Object sender, EventArgs e)
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "DELETE FROM procedures WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", procedure_id_label.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                Controller.PurposeController purpose = new Controller.PurposeController();
+                purpose.deletePurpose(Convert.ToInt32(procedure_id_label.Text));
 
                 MessageBox.Show("Procedure Deleted.", "Success");
 
@@ -242,20 +202,16 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "UPDATE procedures SET procedure_name = @procedure_name, amount = @procedure_amount WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", procedure_id_label.Text);
-            cmd.Parameters.AddWithValue("@procedure_name", procedure_name_textbox.Text);
-            cmd.Parameters.AddWithValue("@procedure_amount", procedure_amount_textbox.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string id = procedure_id_label.Text;
+                string procedure_name = procedure_name_textbox.Text;
+                string procedure_amount = procedure_amount_textbox.Text;
+
+                Controller.PurposeController purpose = new Controller.PurposeController();
+                purpose.updatePurpose(id, procedure_name, procedure_amount);
+                    
+
 
                 MessageBox.Show("Procedure Saved.", "Success");
 
@@ -282,27 +238,21 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "INSERT INTO users(username, password, firstname, lastname) VALUES(@username, @password, @firstname, @lastname)";
-            cmd.Parameters.AddWithValue("@username", new_username_label.Text);
-            cmd.Parameters.AddWithValue("@password", new_password_label.Text);
-            cmd.Parameters.AddWithValue("@firstname", new_firstname_label.Text);
-            cmd.Parameters.AddWithValue("@lastname", new_lastname_label.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string username = new_username_label.Text;
+                string password = new_password_label.Text;
+                string firstname = new_firstname_label.Text;
+                string lastname = new_lastname_label.Text;
+
+                Controller.UserController user = new Controller.UserController();
+                int last_id = user.addUser(username,password,firstname,lastname);
 
                 MessageBox.Show("User Saved.", "Success");
 
                 ListViewItem list;
 
-                list = new ListViewItem(cmd.LastInsertedId.ToString());
+                list = new ListViewItem(last_id.ToString());
                 list.SubItems.Add(new_username_label.Text);
                 list.SubItems.Add(new_firstname_label.Text + " " + new_lastname_label.Text);
 
@@ -328,25 +278,19 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "INSERT INTO procedures(procedure_name,amount) VALUES(@procedure_name,@procedure_amount)";
-            cmd.Parameters.AddWithValue("@procedure_name", new_procedure_name_textbox.Text);
-            cmd.Parameters.AddWithValue("@procedure_amount", new_procedure_amount_textbox.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string procedure_name = new_procedure_name_textbox.Text;
+                string procedure_amount = new_procedure_amount_textbox.Text;
+
+                Controller.PurposeController purpose = new Controller.PurposeController();
+                int last_id = purpose.addPurpose(procedure_name, procedure_amount);
 
                 MessageBox.Show("Procedure Saved.", "Success");
 
                 ListViewItem list;
 
-                list = new ListViewItem(cmd.LastInsertedId.ToString());
+                list = new ListViewItem(last_id.ToString());
                 list.SubItems.Add(new_procedure_name_textbox.Text);
                 list.SubItems.Add(new_procedure_amount_textbox.Text);
                 procedure_list.Items.Add(list);
@@ -365,22 +309,15 @@ namespace dents
                 MessageBox.Show("All fields are required.","Saving Error");
                 return;
             }
-
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "UPDATE users SET username = @username, firstname = @firstname, lastname = @lastname WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", User.id);
-            cmd.Parameters.AddWithValue("@username", username_textbox.Text);
-            cmd.Parameters.AddWithValue("@firstname", firstname_textbox.Text);
-            cmd.Parameters.AddWithValue("@lastname", lastname_textbox.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string id = User.id;
+                string username = username_textbox.Text;
+                string firstname = firstname_textbox.Text;
+                string lastname = lastname_textbox.Text;
+
+                Controller.UserController user = new Controller.UserController();
+                user.updateUser(id, username, firstname, lastname);
 
                 MessageBox.Show("Profile Saved.","Success");
             }
@@ -411,19 +348,13 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "UPDATE users SET password = @password WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", User.id);
-            cmd.Parameters.AddWithValue("@password", newpassword_textbox.Text);
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-                cmd.ExecuteNonQuery();
-                mysql.Close();
+                string id = User.id;
+                string password = newpassword_textbox.Text;
+
+                Controller.UserController user = new Controller.UserController();
+                user.changePassword(id, password);
 
                 MessageBox.Show("Password Changed.", "Success");
             }

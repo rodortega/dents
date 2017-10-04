@@ -47,67 +47,51 @@ namespace dents
 
         private void load_patient()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT id, firstname, lastname FROM patients";
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
-
-                MySqlDataReader reader = cmd.ExecuteReader();
+                Controller.PatientController patient = new Controller.PatientController();
+                DataTable data = patient.getAllPatients();
 
                 Dictionary<string, string> source = new Dictionary<string, string>();
 
-                while (reader.Read())
+                foreach (DataRow row in data.Rows)
                 {
-                    source.Add(reader.GetString("id"), reader.GetString("firstname") + " " + reader.GetString("lastname"));
+                    source.Add(row["id"].ToString(), row["firstname"].ToString() + " " + row["lastname"].ToString());
                 }
 
                 patients_combobox.DataSource = new BindingSource(source, null);
                 patients_combobox.DisplayMember = "Value";
                 patients_combobox.ValueMember = "Key";
-
-                mysql.Close();
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Cannot Load Procedures \n" + ex.ToString(), "Oops!");
+                MessageBox.Show("Cannot Load Patients \n" + ex.ToString(), "Oops!");
             }
         }
 
         private void load_purpose()
         {
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-
-            cmd.CommandText = "SELECT id, procedure_name, amount FROM procedures";
-            cmd.Connection = mysql;
-
-            ListViewItem list;
-
-            procedure_list.ListViewItemSorter = null;
-            procedure_list.BeginUpdate();
-
             try
             {
-                mysql.Open();
+                Controller.PurposeController purpose = new Controller.PurposeController();
+                DataTable dt = purpose.getAllPurpose();
 
-                MySqlDataReader reader = cmd.ExecuteReader();
+                ListViewItem list;
 
-                while (reader.Read())
+                procedure_list.ListViewItemSorter = null;
+                procedure_list.BeginUpdate();
+
+                foreach (DataRow row in dt.Rows)
                 {
-                    list = new ListViewItem(reader.GetString("procedure_name"));
-                    list.SubItems.Add(reader.GetString("amount"));
+                    list = new ListViewItem(row["procedure_name"].ToString());
+                    list.SubItems.Add(row["amount"].ToString());
 
                     procedure_list.Items.Add(list);
                 }
+
                 procedure_list.EndUpdate();
-                mysql.Close();
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Cannot Load Procedures \n" + ex.ToString(), "Oops!");
@@ -204,28 +188,20 @@ namespace dents
                 return;
             }
 
-            MySqlConnection mysql = new MySqlConnection(Connection.credentials);
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = mysql;
-
             try
             {
-                mysql.Open();
+                Controller.HistoryController history = new Controller.HistoryController();
 
                 foreach (ListViewItem item in summary_list.Items)
                 {
-                    cmd.Parameters.Clear();
+                    string patient_id = ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key;
+                    string procedure_name = item.SubItems[0].Text;
+                    string teeth_number = item.SubItems[1].Text;
+                    string amount = item.SubItems[2].Text;
+                    string datetime_create = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                    cmd.CommandText = "INSERT INTO history(patient_id,procedure_name,teeth_number,amount,datetime_create) VALUES (@patient_id,@procedure_name,@teeth_number,@amount,@datetime_create)";
-                    cmd.Parameters.AddWithValue("@patient_id", ((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key);
-                    cmd.Parameters.AddWithValue("@procedure_name", item.SubItems[0].Text);
-                    cmd.Parameters.AddWithValue("@teeth_number", item.SubItems[1].Text);
-                    cmd.Parameters.AddWithValue("@amount", item.SubItems[2].Text);
-                    cmd.Parameters.AddWithValue("@datetime_create", DateTime.Now);
-
-                    cmd.ExecuteNonQuery();
+                    history.addHistory(patient_id, procedure_name, teeth_number, amount, datetime_create);
                 }
-                mysql.Close();
 
                 Log.addToLog("ADD TRANSACTION", "[ PATIENT ID: " +((KeyValuePair<string, string>)patients_combobox.SelectedItem).Key + " ]");
 
@@ -234,9 +210,9 @@ namespace dents
                 this.Close();
             }
 
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Cannot save transaction", "Saving Error");
+                MessageBox.Show("Cannot save transaction \n" + ex.ToString(), "Saving Error");
             }
 
         }
