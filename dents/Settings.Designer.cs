@@ -51,6 +51,7 @@
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.id_label = new MaterialSkin.Controls.MaterialLabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialDivider6 = new MaterialSkin.Controls.MaterialDivider();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialLabel14 = new MaterialSkin.Controls.MaterialLabel();
             this.save_new_procedure_button = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -59,6 +60,7 @@
             this.materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel13 = new MaterialSkin.Controls.MaterialLabel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
             this.materialLabel15 = new MaterialSkin.Controls.MaterialLabel();
             this.save_updated_procedure_button = new MaterialSkin.Controls.MaterialRaisedButton();
             this.procedure_name_textbox = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -73,44 +75,42 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.users_list = new MaterialSkin.Controls.MaterialListView();
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.materialDivider5 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider4 = new MaterialSkin.Controls.MaterialDivider();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.new_lastname_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.new_firstname_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.new_password_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.materialLabel24 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel17 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel23 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel16 = new MaterialSkin.Controls.MaterialLabel();
             this.save_new_user_button = new MaterialSkin.Controls.MaterialRaisedButton();
             this.new_username_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
-            this.users_id_label = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
-            this.users_username_label = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel22 = new MaterialSkin.Controls.MaterialLabel();
-            this.users_fullname_label = new MaterialSkin.Controls.MaterialLabel();
-            this.materialDivider4 = new MaterialSkin.Controls.MaterialDivider();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.delete_user_button = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.materialLabel23 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel17 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel18 = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel24 = new MaterialSkin.Controls.MaterialLabel();
-            this.new_password_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.new_firstname_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.new_lastname_label = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialDivider5 = new MaterialSkin.Controls.MaterialDivider();
-            this.materialDivider6 = new MaterialSkin.Controls.MaterialDivider();
-            this.materialRaisedButton1 = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.users_fullname_label = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel22 = new MaterialSkin.Controls.MaterialLabel();
+            this.users_username_label = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel21 = new MaterialSkin.Controls.MaterialLabel();
+            this.users_id_label = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel20 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel19 = new MaterialSkin.Controls.MaterialLabel();
+            this.users_list = new MaterialSkin.Controls.MaterialListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialTabControl1
@@ -170,6 +170,7 @@
             this.save_password_button.TabIndex = 11;
             this.save_password_button.Text = "SAVE";
             this.save_password_button.UseVisualStyleBackColor = false;
+            this.save_password_button.Click += new System.EventHandler(this.save_password_click);
             // 
             // materialLabel9
             // 
@@ -248,6 +249,7 @@
             this.save_basic_button.TabIndex = 7;
             this.save_basic_button.Text = "SAVE";
             this.save_basic_button.UseVisualStyleBackColor = false;
+            this.save_basic_button.Click += new System.EventHandler(this.save_basic_click);
             // 
             // newpassword_textbox
             // 
@@ -472,6 +474,17 @@
             this.tabPage2.Text = "MAINTENANCE";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // materialDivider6
+            // 
+            this.materialDivider6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialDivider6.Depth = 0;
+            this.materialDivider6.Location = new System.Drawing.Point(411, 18);
+            this.materialDivider6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider6.Name = "materialDivider6";
+            this.materialDivider6.Size = new System.Drawing.Size(3, 350);
+            this.materialDivider6.TabIndex = 55;
+            this.materialDivider6.Text = "materialDivider6";
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
@@ -593,6 +606,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(341, 216);
             this.panel1.TabIndex = 32;
+            // 
+            // materialRaisedButton1
+            // 
+            this.materialRaisedButton1.AutoSize = true;
+            this.materialRaisedButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialRaisedButton1.Depth = 0;
+            this.materialRaisedButton1.Icon = ((System.Drawing.Image)(resources.GetObject("materialRaisedButton1.Icon")));
+            this.materialRaisedButton1.Location = new System.Drawing.Point(19, 161);
+            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRaisedButton1.Name = "materialRaisedButton1";
+            this.materialRaisedButton1.Primary = true;
+            this.materialRaisedButton1.Size = new System.Drawing.Size(97, 36);
+            this.materialRaisedButton1.TabIndex = 11;
+            this.materialRaisedButton1.Text = "DELETE";
+            this.materialRaisedButton1.UseVisualStyleBackColor = true;
+            this.materialRaisedButton1.Click += new System.EventHandler(this.delete_procedure_click);
             // 
             // materialLabel15
             // 
@@ -773,67 +802,27 @@
             this.tabPage3.Text = "ACCOUNTS";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // users_list
+            // materialDivider5
             // 
-            this.users_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.users_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
-            this.users_list.Depth = 0;
-            this.users_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
-            this.users_list.FullRowSelect = true;
-            this.users_list.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.users_list.Location = new System.Drawing.Point(0, 6);
-            this.users_list.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.users_list.MouseState = MaterialSkin.MouseState.OUT;
-            this.users_list.Name = "users_list";
-            this.users_list.OwnerDraw = true;
-            this.users_list.Size = new System.Drawing.Size(470, 374);
-            this.users_list.TabIndex = 52;
-            this.users_list.UseCompatibleStateImageBehavior = false;
-            this.users_list.View = System.Windows.Forms.View.Details;
-            this.users_list.SelectedIndexChanged += new System.EventHandler(this.users_list_click);
+            this.materialDivider5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialDivider5.Depth = 0;
+            this.materialDivider5.Location = new System.Drawing.Point(466, 16);
+            this.materialDivider5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider5.Name = "materialDivider5";
+            this.materialDivider5.Size = new System.Drawing.Size(3, 350);
+            this.materialDivider5.TabIndex = 55;
+            this.materialDivider5.Text = "materialDivider5";
             // 
-            // columnHeader2
+            // materialDivider4
             // 
-            this.columnHeader2.Text = "ID";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Username";
-            this.columnHeader3.Width = 200;
-            // 
-            // materialTabSelector1
-            // 
-            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
-            this.materialTabSelector1.Depth = 0;
-            this.materialTabSelector1.Location = new System.Drawing.Point(0, 63);
-            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialTabSelector1.Name = "materialTabSelector1";
-            this.materialTabSelector1.Size = new System.Drawing.Size(1163, 41);
-            this.materialTabSelector1.TabIndex = 3;
-            this.materialTabSelector1.Text = "materialTabSelector1";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Name";
-            this.columnHeader4.Width = 200;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.delete_user_button);
-            this.panel3.Controls.Add(this.users_fullname_label);
-            this.panel3.Controls.Add(this.materialLabel22);
-            this.panel3.Controls.Add(this.users_username_label);
-            this.panel3.Controls.Add(this.materialLabel21);
-            this.panel3.Controls.Add(this.users_id_label);
-            this.panel3.Controls.Add(this.materialLabel20);
-            this.panel3.Controls.Add(this.materialLabel19);
-            this.panel3.Location = new System.Drawing.Point(475, 16);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(296, 350);
-            this.panel3.TabIndex = 53;
+            this.materialDivider4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialDivider4.Depth = 0;
+            this.materialDivider4.Location = new System.Drawing.Point(778, 17);
+            this.materialDivider4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider4.Name = "materialDivider4";
+            this.materialDivider4.Size = new System.Drawing.Size(3, 350);
+            this.materialDivider4.TabIndex = 54;
+            this.materialDivider4.Text = "materialDivider4";
             // 
             // panel4
             // 
@@ -853,6 +842,112 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(352, 350);
             this.panel4.TabIndex = 34;
+            // 
+            // new_lastname_label
+            // 
+            this.new_lastname_label.BackColor = System.Drawing.Color.White;
+            this.new_lastname_label.Depth = 0;
+            this.new_lastname_label.Hint = "";
+            this.new_lastname_label.Location = new System.Drawing.Point(93, 163);
+            this.new_lastname_label.MaxLength = 32767;
+            this.new_lastname_label.MouseState = MaterialSkin.MouseState.HOVER;
+            this.new_lastname_label.Name = "new_lastname_label";
+            this.new_lastname_label.PasswordChar = '\0';
+            this.new_lastname_label.SelectedText = "";
+            this.new_lastname_label.SelectionLength = 0;
+            this.new_lastname_label.SelectionStart = 0;
+            this.new_lastname_label.Size = new System.Drawing.Size(236, 23);
+            this.new_lastname_label.TabIndex = 19;
+            this.new_lastname_label.TabStop = false;
+            this.new_lastname_label.UseSystemPasswordChar = false;
+            // 
+            // new_firstname_label
+            // 
+            this.new_firstname_label.BackColor = System.Drawing.Color.White;
+            this.new_firstname_label.Depth = 0;
+            this.new_firstname_label.Hint = "";
+            this.new_firstname_label.Location = new System.Drawing.Point(93, 129);
+            this.new_firstname_label.MaxLength = 32767;
+            this.new_firstname_label.MouseState = MaterialSkin.MouseState.HOVER;
+            this.new_firstname_label.Name = "new_firstname_label";
+            this.new_firstname_label.PasswordChar = '\0';
+            this.new_firstname_label.SelectedText = "";
+            this.new_firstname_label.SelectionLength = 0;
+            this.new_firstname_label.SelectionStart = 0;
+            this.new_firstname_label.Size = new System.Drawing.Size(236, 23);
+            this.new_firstname_label.TabIndex = 18;
+            this.new_firstname_label.TabStop = false;
+            this.new_firstname_label.UseSystemPasswordChar = false;
+            // 
+            // new_password_label
+            // 
+            this.new_password_label.BackColor = System.Drawing.Color.White;
+            this.new_password_label.Depth = 0;
+            this.new_password_label.Hint = "";
+            this.new_password_label.Location = new System.Drawing.Point(93, 95);
+            this.new_password_label.MaxLength = 32767;
+            this.new_password_label.MouseState = MaterialSkin.MouseState.HOVER;
+            this.new_password_label.Name = "new_password_label";
+            this.new_password_label.PasswordChar = '\0';
+            this.new_password_label.SelectedText = "";
+            this.new_password_label.SelectionLength = 0;
+            this.new_password_label.SelectionStart = 0;
+            this.new_password_label.Size = new System.Drawing.Size(236, 23);
+            this.new_password_label.TabIndex = 17;
+            this.new_password_label.TabStop = false;
+            this.new_password_label.UseSystemPasswordChar = false;
+            // 
+            // materialLabel24
+            // 
+            this.materialLabel24.AutoSize = true;
+            this.materialLabel24.Depth = 0;
+            this.materialLabel24.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel24.Location = new System.Drawing.Point(3, 133);
+            this.materialLabel24.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel24.Name = "materialLabel24";
+            this.materialLabel24.Size = new System.Drawing.Size(87, 19);
+            this.materialLabel24.TabIndex = 16;
+            this.materialLabel24.Text = "First Name:";
+            // 
+            // materialLabel18
+            // 
+            this.materialLabel18.AutoSize = true;
+            this.materialLabel18.Depth = 0;
+            this.materialLabel18.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel18.Location = new System.Drawing.Point(3, 167);
+            this.materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel18.Name = "materialLabel18";
+            this.materialLabel18.Size = new System.Drawing.Size(86, 19);
+            this.materialLabel18.TabIndex = 15;
+            this.materialLabel18.Text = "Last Name:";
+            // 
+            // materialLabel17
+            // 
+            this.materialLabel17.AutoSize = true;
+            this.materialLabel17.Depth = 0;
+            this.materialLabel17.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel17.Location = new System.Drawing.Point(3, 99);
+            this.materialLabel17.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel17.Name = "materialLabel17";
+            this.materialLabel17.Size = new System.Drawing.Size(79, 19);
+            this.materialLabel17.TabIndex = 14;
+            this.materialLabel17.Text = "Password:";
+            // 
+            // materialLabel23
+            // 
+            this.materialLabel23.AutoSize = true;
+            this.materialLabel23.Depth = 0;
+            this.materialLabel23.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel23.Location = new System.Drawing.Point(3, 62);
+            this.materialLabel23.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel23.Name = "materialLabel23";
+            this.materialLabel23.Size = new System.Drawing.Size(81, 19);
+            this.materialLabel23.TabIndex = 13;
+            this.materialLabel23.Text = "Username:";
             // 
             // materialLabel16
             // 
@@ -919,107 +1014,20 @@
             this.materialSingleLineTextField2.TabStop = false;
             this.materialSingleLineTextField2.UseSystemPasswordChar = false;
             // 
-            // materialLabel19
+            // panel3
             // 
-            this.materialLabel19.AutoSize = true;
-            this.materialLabel19.Depth = 0;
-            this.materialLabel19.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel19.Location = new System.Drawing.Point(9, 12);
-            this.materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel19.Name = "materialLabel19";
-            this.materialLabel19.Size = new System.Drawing.Size(46, 19);
-            this.materialLabel19.TabIndex = 9;
-            this.materialLabel19.Text = "USER";
-            // 
-            // materialLabel20
-            // 
-            this.materialLabel20.AutoSize = true;
-            this.materialLabel20.Depth = 0;
-            this.materialLabel20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.materialLabel20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel20.Location = new System.Drawing.Point(10, 53);
-            this.materialLabel20.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel20.Name = "materialLabel20";
-            this.materialLabel20.Size = new System.Drawing.Size(26, 18);
-            this.materialLabel20.TabIndex = 10;
-            this.materialLabel20.Text = "ID:";
-            // 
-            // users_id_label
-            // 
-            this.users_id_label.AutoSize = true;
-            this.users_id_label.Depth = 0;
-            this.users_id_label.Font = new System.Drawing.Font("Roboto", 11F);
-            this.users_id_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.users_id_label.Location = new System.Drawing.Point(96, 53);
-            this.users_id_label.MouseState = MaterialSkin.MouseState.HOVER;
-            this.users_id_label.Name = "users_id_label";
-            this.users_id_label.Size = new System.Drawing.Size(31, 19);
-            this.users_id_label.TabIndex = 11;
-            this.users_id_label.Text = "{id}";
-            // 
-            // materialLabel21
-            // 
-            this.materialLabel21.AutoSize = true;
-            this.materialLabel21.Depth = 0;
-            this.materialLabel21.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel21.Location = new System.Drawing.Point(9, 89);
-            this.materialLabel21.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel21.Name = "materialLabel21";
-            this.materialLabel21.Size = new System.Drawing.Size(81, 19);
-            this.materialLabel21.TabIndex = 12;
-            this.materialLabel21.Text = "Username:";
-            // 
-            // users_username_label
-            // 
-            this.users_username_label.AutoSize = true;
-            this.users_username_label.Depth = 0;
-            this.users_username_label.Font = new System.Drawing.Font("Roboto", 11F);
-            this.users_username_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.users_username_label.Location = new System.Drawing.Point(96, 89);
-            this.users_username_label.MouseState = MaterialSkin.MouseState.HOVER;
-            this.users_username_label.Name = "users_username_label";
-            this.users_username_label.Size = new System.Drawing.Size(85, 19);
-            this.users_username_label.TabIndex = 13;
-            this.users_username_label.Text = "{username}";
-            // 
-            // materialLabel22
-            // 
-            this.materialLabel22.AutoSize = true;
-            this.materialLabel22.Depth = 0;
-            this.materialLabel22.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel22.Location = new System.Drawing.Point(9, 122);
-            this.materialLabel22.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel22.Name = "materialLabel22";
-            this.materialLabel22.Size = new System.Drawing.Size(53, 19);
-            this.materialLabel22.TabIndex = 14;
-            this.materialLabel22.Text = "Name:";
-            // 
-            // users_fullname_label
-            // 
-            this.users_fullname_label.AutoSize = true;
-            this.users_fullname_label.Depth = 0;
-            this.users_fullname_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.users_fullname_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.users_fullname_label.Location = new System.Drawing.Point(97, 122);
-            this.users_fullname_label.MouseState = MaterialSkin.MouseState.HOVER;
-            this.users_fullname_label.Name = "users_fullname_label";
-            this.users_fullname_label.Size = new System.Drawing.Size(73, 18);
-            this.users_fullname_label.TabIndex = 15;
-            this.users_fullname_label.Text = "{fullname}";
-            // 
-            // materialDivider4
-            // 
-            this.materialDivider4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialDivider4.Depth = 0;
-            this.materialDivider4.Location = new System.Drawing.Point(778, 17);
-            this.materialDivider4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider4.Name = "materialDivider4";
-            this.materialDivider4.Size = new System.Drawing.Size(3, 350);
-            this.materialDivider4.TabIndex = 54;
-            this.materialDivider4.Text = "materialDivider4";
+            this.panel3.Controls.Add(this.delete_user_button);
+            this.panel3.Controls.Add(this.users_fullname_label);
+            this.panel3.Controls.Add(this.materialLabel22);
+            this.panel3.Controls.Add(this.users_username_label);
+            this.panel3.Controls.Add(this.materialLabel21);
+            this.panel3.Controls.Add(this.users_id_label);
+            this.panel3.Controls.Add(this.materialLabel20);
+            this.panel3.Controls.Add(this.materialLabel19);
+            this.panel3.Location = new System.Drawing.Point(475, 16);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(296, 350);
+            this.panel3.TabIndex = 53;
             // 
             // delete_user_button
             // 
@@ -1037,149 +1045,143 @@
             this.delete_user_button.UseVisualStyleBackColor = true;
             this.delete_user_button.Click += new System.EventHandler(this.delete_users_click);
             // 
-            // materialLabel23
+            // users_fullname_label
             // 
-            this.materialLabel23.AutoSize = true;
-            this.materialLabel23.Depth = 0;
-            this.materialLabel23.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel23.Location = new System.Drawing.Point(3, 62);
-            this.materialLabel23.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel23.Name = "materialLabel23";
-            this.materialLabel23.Size = new System.Drawing.Size(81, 19);
-            this.materialLabel23.TabIndex = 13;
-            this.materialLabel23.Text = "Username:";
+            this.users_fullname_label.AutoSize = true;
+            this.users_fullname_label.Depth = 0;
+            this.users_fullname_label.Font = new System.Drawing.Font("Roboto", 11F);
+            this.users_fullname_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.users_fullname_label.Location = new System.Drawing.Point(97, 122);
+            this.users_fullname_label.MouseState = MaterialSkin.MouseState.HOVER;
+            this.users_fullname_label.Name = "users_fullname_label";
+            this.users_fullname_label.Size = new System.Drawing.Size(77, 19);
+            this.users_fullname_label.TabIndex = 15;
+            this.users_fullname_label.Text = "{fullname}";
             // 
-            // materialLabel17
+            // materialLabel22
             // 
-            this.materialLabel17.AutoSize = true;
-            this.materialLabel17.Depth = 0;
-            this.materialLabel17.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel17.Location = new System.Drawing.Point(3, 99);
-            this.materialLabel17.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel17.Name = "materialLabel17";
-            this.materialLabel17.Size = new System.Drawing.Size(79, 19);
-            this.materialLabel17.TabIndex = 14;
-            this.materialLabel17.Text = "Password:";
+            this.materialLabel22.AutoSize = true;
+            this.materialLabel22.Depth = 0;
+            this.materialLabel22.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel22.Location = new System.Drawing.Point(9, 122);
+            this.materialLabel22.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel22.Name = "materialLabel22";
+            this.materialLabel22.Size = new System.Drawing.Size(53, 19);
+            this.materialLabel22.TabIndex = 14;
+            this.materialLabel22.Text = "Name:";
             // 
-            // materialLabel18
+            // users_username_label
             // 
-            this.materialLabel18.AutoSize = true;
-            this.materialLabel18.Depth = 0;
-            this.materialLabel18.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel18.Location = new System.Drawing.Point(3, 167);
-            this.materialLabel18.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel18.Name = "materialLabel18";
-            this.materialLabel18.Size = new System.Drawing.Size(86, 19);
-            this.materialLabel18.TabIndex = 15;
-            this.materialLabel18.Text = "Last Name:";
+            this.users_username_label.AutoSize = true;
+            this.users_username_label.Depth = 0;
+            this.users_username_label.Font = new System.Drawing.Font("Roboto", 11F);
+            this.users_username_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.users_username_label.Location = new System.Drawing.Point(96, 89);
+            this.users_username_label.MouseState = MaterialSkin.MouseState.HOVER;
+            this.users_username_label.Name = "users_username_label";
+            this.users_username_label.Size = new System.Drawing.Size(85, 19);
+            this.users_username_label.TabIndex = 13;
+            this.users_username_label.Text = "{username}";
             // 
-            // materialLabel24
+            // materialLabel21
             // 
-            this.materialLabel24.AutoSize = true;
-            this.materialLabel24.Depth = 0;
-            this.materialLabel24.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel24.Location = new System.Drawing.Point(3, 133);
-            this.materialLabel24.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel24.Name = "materialLabel24";
-            this.materialLabel24.Size = new System.Drawing.Size(87, 19);
-            this.materialLabel24.TabIndex = 16;
-            this.materialLabel24.Text = "First Name:";
+            this.materialLabel21.AutoSize = true;
+            this.materialLabel21.Depth = 0;
+            this.materialLabel21.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel21.Location = new System.Drawing.Point(9, 89);
+            this.materialLabel21.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel21.Name = "materialLabel21";
+            this.materialLabel21.Size = new System.Drawing.Size(81, 19);
+            this.materialLabel21.TabIndex = 12;
+            this.materialLabel21.Text = "Username:";
             // 
-            // new_password_label
+            // users_id_label
             // 
-            this.new_password_label.BackColor = System.Drawing.Color.White;
-            this.new_password_label.Depth = 0;
-            this.new_password_label.Hint = "";
-            this.new_password_label.Location = new System.Drawing.Point(93, 95);
-            this.new_password_label.MaxLength = 32767;
-            this.new_password_label.MouseState = MaterialSkin.MouseState.HOVER;
-            this.new_password_label.Name = "new_password_label";
-            this.new_password_label.PasswordChar = '\0';
-            this.new_password_label.SelectedText = "";
-            this.new_password_label.SelectionLength = 0;
-            this.new_password_label.SelectionStart = 0;
-            this.new_password_label.Size = new System.Drawing.Size(236, 23);
-            this.new_password_label.TabIndex = 17;
-            this.new_password_label.TabStop = false;
-            this.new_password_label.UseSystemPasswordChar = false;
+            this.users_id_label.AutoSize = true;
+            this.users_id_label.Depth = 0;
+            this.users_id_label.Font = new System.Drawing.Font("Roboto", 11F);
+            this.users_id_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.users_id_label.Location = new System.Drawing.Point(96, 53);
+            this.users_id_label.MouseState = MaterialSkin.MouseState.HOVER;
+            this.users_id_label.Name = "users_id_label";
+            this.users_id_label.Size = new System.Drawing.Size(31, 19);
+            this.users_id_label.TabIndex = 11;
+            this.users_id_label.Text = "{id}";
             // 
-            // new_firstname_label
+            // materialLabel20
             // 
-            this.new_firstname_label.BackColor = System.Drawing.Color.White;
-            this.new_firstname_label.Depth = 0;
-            this.new_firstname_label.Hint = "";
-            this.new_firstname_label.Location = new System.Drawing.Point(93, 129);
-            this.new_firstname_label.MaxLength = 32767;
-            this.new_firstname_label.MouseState = MaterialSkin.MouseState.HOVER;
-            this.new_firstname_label.Name = "new_firstname_label";
-            this.new_firstname_label.PasswordChar = '\0';
-            this.new_firstname_label.SelectedText = "";
-            this.new_firstname_label.SelectionLength = 0;
-            this.new_firstname_label.SelectionStart = 0;
-            this.new_firstname_label.Size = new System.Drawing.Size(236, 23);
-            this.new_firstname_label.TabIndex = 18;
-            this.new_firstname_label.TabStop = false;
-            this.new_firstname_label.UseSystemPasswordChar = false;
+            this.materialLabel20.AutoSize = true;
+            this.materialLabel20.Depth = 0;
+            this.materialLabel20.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel20.Location = new System.Drawing.Point(10, 53);
+            this.materialLabel20.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel20.Name = "materialLabel20";
+            this.materialLabel20.Size = new System.Drawing.Size(27, 19);
+            this.materialLabel20.TabIndex = 10;
+            this.materialLabel20.Text = "ID:";
             // 
-            // new_lastname_label
+            // materialLabel19
             // 
-            this.new_lastname_label.BackColor = System.Drawing.Color.White;
-            this.new_lastname_label.Depth = 0;
-            this.new_lastname_label.Hint = "";
-            this.new_lastname_label.Location = new System.Drawing.Point(93, 163);
-            this.new_lastname_label.MaxLength = 32767;
-            this.new_lastname_label.MouseState = MaterialSkin.MouseState.HOVER;
-            this.new_lastname_label.Name = "new_lastname_label";
-            this.new_lastname_label.PasswordChar = '\0';
-            this.new_lastname_label.SelectedText = "";
-            this.new_lastname_label.SelectionLength = 0;
-            this.new_lastname_label.SelectionStart = 0;
-            this.new_lastname_label.Size = new System.Drawing.Size(236, 23);
-            this.new_lastname_label.TabIndex = 19;
-            this.new_lastname_label.TabStop = false;
-            this.new_lastname_label.UseSystemPasswordChar = false;
+            this.materialLabel19.AutoSize = true;
+            this.materialLabel19.Depth = 0;
+            this.materialLabel19.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel19.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel19.Location = new System.Drawing.Point(9, 12);
+            this.materialLabel19.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel19.Name = "materialLabel19";
+            this.materialLabel19.Size = new System.Drawing.Size(46, 19);
+            this.materialLabel19.TabIndex = 9;
+            this.materialLabel19.Text = "USER";
             // 
-            // materialDivider5
+            // users_list
             // 
-            this.materialDivider5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialDivider5.Depth = 0;
-            this.materialDivider5.Location = new System.Drawing.Point(466, 16);
-            this.materialDivider5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider5.Name = "materialDivider5";
-            this.materialDivider5.Size = new System.Drawing.Size(3, 350);
-            this.materialDivider5.TabIndex = 55;
-            this.materialDivider5.Text = "materialDivider5";
+            this.users_list.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.users_list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.users_list.Depth = 0;
+            this.users_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.users_list.FullRowSelect = true;
+            this.users_list.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.users_list.Location = new System.Drawing.Point(0, 6);
+            this.users_list.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.users_list.MouseState = MaterialSkin.MouseState.OUT;
+            this.users_list.Name = "users_list";
+            this.users_list.OwnerDraw = true;
+            this.users_list.Size = new System.Drawing.Size(470, 374);
+            this.users_list.TabIndex = 52;
+            this.users_list.UseCompatibleStateImageBehavior = false;
+            this.users_list.View = System.Windows.Forms.View.Details;
+            this.users_list.SelectedIndexChanged += new System.EventHandler(this.users_list_click);
             // 
-            // materialDivider6
+            // columnHeader2
             // 
-            this.materialDivider6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialDivider6.Depth = 0;
-            this.materialDivider6.Location = new System.Drawing.Point(411, 18);
-            this.materialDivider6.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider6.Name = "materialDivider6";
-            this.materialDivider6.Size = new System.Drawing.Size(3, 350);
-            this.materialDivider6.TabIndex = 55;
-            this.materialDivider6.Text = "materialDivider6";
+            this.columnHeader2.Text = "ID";
             // 
-            // materialRaisedButton1
+            // columnHeader3
             // 
-            this.materialRaisedButton1.AutoSize = true;
-            this.materialRaisedButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialRaisedButton1.Depth = 0;
-            this.materialRaisedButton1.Icon = ((System.Drawing.Image)(resources.GetObject("materialRaisedButton1.Icon")));
-            this.materialRaisedButton1.Location = new System.Drawing.Point(19, 161);
-            this.materialRaisedButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialRaisedButton1.Name = "materialRaisedButton1";
-            this.materialRaisedButton1.Primary = true;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(97, 36);
-            this.materialRaisedButton1.TabIndex = 11;
-            this.materialRaisedButton1.Text = "DELETE";
-            this.materialRaisedButton1.UseVisualStyleBackColor = true;
-            this.materialRaisedButton1.Click += new System.EventHandler(this.delete_procedure_click);
+            this.columnHeader3.Text = "Username";
+            this.columnHeader3.Width = 200;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Name";
+            this.columnHeader4.Width = 200;
+            // 
+            // materialTabSelector1
+            // 
+            this.materialTabSelector1.BaseTabControl = this.materialTabControl1;
+            this.materialTabSelector1.Depth = 0;
+            this.materialTabSelector1.Location = new System.Drawing.Point(0, 63);
+            this.materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabSelector1.Name = "materialTabSelector1";
+            this.materialTabSelector1.Size = new System.Drawing.Size(1163, 41);
+            this.materialTabSelector1.TabIndex = 3;
+            this.materialTabSelector1.Text = "materialTabSelector1";
             // 
             // Settings
             // 
@@ -1201,10 +1203,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

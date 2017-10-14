@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace dents
 {
     public class Connection
     {
-        public static string credentials = "server=localhost;database=dents;uid=root;pwd=;";
+        public static string credentials = System.Configuration.ConfigurationManager.ConnectionStrings["server"].ConnectionString;
     }
 }

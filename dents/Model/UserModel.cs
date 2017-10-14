@@ -17,9 +17,11 @@ namespace Model
 
         public DataTable getUserByCredential(string username, string password)
         {
-            cmd.CommandText = "SELECT * FROM users WHERE username=@username AND password=@password";
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_SELECT_ALL_USERS_BY_USERNAME_AND_PASSWORD";
+            //cmd.CommandText = "SELECT * FROM users WHERE username=@username AND password=@password";
+            cmd.Parameters.AddWithValue("@in_username", username);
+            cmd.Parameters.AddWithValue("@in_password", password);
             cmd.Connection = mysql;
 
             try
@@ -40,8 +42,10 @@ namespace Model
 
         public DataTable getUserById(int id)
         {
-            cmd.CommandText = "SELECT * FROM users WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_SELECT_ALL_USERS_BY_ID";
+            //cmd.CommandText = "SELECT * FROM users WHERE id = @id";
+            cmd.Parameters.AddWithValue("@in_id", id);
             cmd.Connection = mysql;
 
             try
@@ -62,7 +66,9 @@ namespace Model
 
         public DataTable getOtherUsers()
         {
-            cmd.CommandText = "SELECT id, username, firstname, lastname FROM users WHERE id != 1";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_SELECT_ALL_USERS_NOT_ADMIN";
+            //cmd.CommandText = "SELECT id, username, firstname, lastname FROM users WHERE id != 1";
             cmd.Connection = mysql;
 
             try
@@ -83,8 +89,10 @@ namespace Model
 
         public Boolean deleteUser(int id)
         {
-            cmd.CommandText = "DELETE FROM users WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_DELETE_USER_BY_ID";
+            //cmd.CommandText = "DELETE FROM users WHERE id = @id";
+            cmd.Parameters.AddWithValue("@in_id", id);
             cmd.Connection = mysql;
 
             try
@@ -104,20 +112,23 @@ namespace Model
 
         public Int32 addUser(string username, string password, string firstname, string lastname)
         {
-            cmd.CommandText = "INSERT INTO users(username, password, firstname, lastname) VALUES(@username, @password, @firstname, @lastname)";
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
-            cmd.Parameters.AddWithValue("@firstname", firstname);
-            cmd.Parameters.AddWithValue("@lastname", lastname);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_INSERT_TO_USERS";
+            //cmd.CommandText = "INSERT INTO users(username, password, firstname, lastname) VALUES(@username, @password, @firstname, @lastname)";
+            cmd.Parameters.AddWithValue("@in_username", username);
+            cmd.Parameters.AddWithValue("@in_password", password);
+            cmd.Parameters.AddWithValue("@in_firstname", firstname);
+            cmd.Parameters.AddWithValue("@in_lastname", lastname);
             cmd.Connection = mysql;
 
             try
             {
                 mysql.Open();
-                cmd.ExecuteNonQuery();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                reader.Read();
+                string last_insert_id = reader.GetString("id").ToString();
                 mysql.Close();
-
-                return Convert.ToInt32(cmd.LastInsertedId);
+                return Convert.ToInt32(last_insert_id);
             }
 
             catch
@@ -128,11 +139,13 @@ namespace Model
 
         public Boolean updateUser(string id, string username, string firstname, string lastname)
         {
-            cmd.CommandText = "UPDATE users SET username = @username, firstname = @firstname, lastname = @lastname WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@firstname", firstname);
-            cmd.Parameters.AddWithValue("@lastname", lastname);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_UPDATE_USER";
+            //cmd.CommandText = "UPDATE users SET username = @username, firstname = @firstname, lastname = @lastname WHERE id = @id";
+            cmd.Parameters.AddWithValue("@in_id", id);
+            cmd.Parameters.AddWithValue("@in_username", username);
+            cmd.Parameters.AddWithValue("@in_firstname", firstname);
+            cmd.Parameters.AddWithValue("@in_lastname", lastname);
             cmd.Connection = mysql;
 
             try
@@ -144,17 +157,20 @@ namespace Model
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }
 
         public Boolean changePassword(string id, string password)
         {
-            cmd.CommandText = "UPDATE users SET password = @password WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@password", password);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_UPDATE_USER_ONLY_PASSWORD";
+            //cmd.CommandText = "UPDATE users SET password = @password WHERE id = @id";
+            cmd.Parameters.AddWithValue("@in_id", id);
+            cmd.Parameters.AddWithValue("@in_password", password);
             cmd.Connection = mysql;
 
             try
@@ -166,8 +182,9 @@ namespace Model
                 return true;
             }
 
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }

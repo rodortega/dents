@@ -17,8 +17,10 @@ namespace Model
 
         public DataTable getHistoryByPatientId(int patient_id)
         {
-            cmd.CommandText = "SELECT * FROM history WHERE patient_id = @patient_id";
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_SELECT_ALL_HISTORY_BY_PATIENT_ID";
+            //cmd.CommandText = "SELECT * FROM history WHERE patient_id = @patient_id";
+            cmd.Parameters.AddWithValue("@in_patient_id", patient_id);
             cmd.Connection = mysql;
 
             try
@@ -39,12 +41,13 @@ namespace Model
 
         public Boolean AddHistory(string patient_id, string procedure_name, string teeth_number, string amount, string datetime_create)
         {
-            cmd.CommandText = "INSERT INTO history(patient_id,procedure_name,teeth_number,amount,datetime_create) VALUES (@patient_id,@procedure_name,@teeth_number,@amount,@datetime_create)";
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
-            cmd.Parameters.AddWithValue("@procedure_name", procedure_name);
-            cmd.Parameters.AddWithValue("@teeth_number", teeth_number);
-            cmd.Parameters.AddWithValue("@amount", amount);
-            cmd.Parameters.AddWithValue("@datetime_create", datetime_create);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_INSERT_TO_HISTORY";
+            //cmd.CommandText = "INSERT INTO history(patient_id,procedure_name,teeth_number,amount,datetime_create) VALUES (@patient_id,@procedure_name,@teeth_number,@amount,@datetime_create)";
+            cmd.Parameters.AddWithValue("@in_patient_id", patient_id);
+            cmd.Parameters.AddWithValue("@in_procedure_name", procedure_name);
+            cmd.Parameters.AddWithValue("@in_teeth_number", teeth_number);
+            cmd.Parameters.AddWithValue("@in_amount", amount);
             cmd.Connection = mysql;
 
             try

@@ -18,7 +18,9 @@ namespace Model
 
         public DataTable getAllAppointments()
         {
-            cmd.CommandText = "SELECT appointments.*,  patients.firstname, patients.lastname, patients.phone, patients.address FROM appointments LEFT JOIN patients on patients.id = appointments.patient_id WHERE appointments.status = 1 ORDER BY appointments.schedule ASC";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_SELECT_ALL_APPOINTMENTS";
+            //cmd.CommandText = "SELECT appointments.*,  patients.firstname, patients.lastname, patients.phone, patients.address FROM appointments LEFT JOIN patients on patients.id = appointments.patient_id WHERE appointments.status = 1 ORDER BY appointments.schedule ASC";
             cmd.Connection = mysql;
 
             try
@@ -39,8 +41,10 @@ namespace Model
 
         public DataTable getAppointmentByPatientId(Int32 patient_id)
         {
-            cmd.CommandText = "SELECT * FROM appointments WHERE patient_id = @patient_id";
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_SELECT_ALL_APPOINTMENTS_BY_PATIENT_ID";
+            //cmd.CommandText = "SELECT * FROM appointments WHERE patient_id = @patient_id";
+            cmd.Parameters.AddWithValue("@in_patient_id", patient_id);
             cmd.Connection = mysql;
 
             try
@@ -61,8 +65,9 @@ namespace Model
 
         public Boolean updateAppointment(Int32 id)
         {
-            cmd.CommandText = "UPDATE appointments SET status = 0 WHERE id = @id";
-            cmd.Parameters.AddWithValue("@id", id);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_UPDATE_APPOINTMENT";
+            cmd.Parameters.AddWithValue("@in_id", id);
             cmd.Connection = mysql;
 
             try
@@ -74,20 +79,23 @@ namespace Model
                 return true;
             }
 
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex);
                 return false;
             }
         }
 
         public Boolean addAppointment(string title, string description, string schedule, string patient_id, string status)
         {
-            cmd.CommandText = "INSERT INTO appointments(title,description,schedule,patient_id,status) VALUES (@title,@description,@schedule,@patient_id,@status)";
-            cmd.Parameters.AddWithValue("@title", title);
-            cmd.Parameters.AddWithValue("@description", description);
-            cmd.Parameters.AddWithValue("@schedule", schedule);
-            cmd.Parameters.AddWithValue("@patient_id", patient_id);
-            cmd.Parameters.AddWithValue("@status", status);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "_INSERT_TO_APPOINTMENTS";
+            //cmd.CommandText = "INSERT INTO appointments(title,description,schedule,patient_id,status) VALUES (@title,@description,@schedule,@patient_id,@status)";
+            cmd.Parameters.AddWithValue("@in_title", title);
+            cmd.Parameters.AddWithValue("@in_description", description);
+            cmd.Parameters.AddWithValue("@in_schedule", schedule);
+            cmd.Parameters.AddWithValue("@in_patient_id", patient_id);
+            cmd.Parameters.AddWithValue("@in_status", status);
             cmd.Connection = mysql;
 
             try

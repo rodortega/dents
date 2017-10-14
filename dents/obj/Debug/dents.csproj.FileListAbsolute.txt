@@ -1,10 +1,7 @@
-c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\bin\Debug\dents.exe.config
-c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.csprojResolveAssemblyReference.cache
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.Properties.Resources.resources
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.csproj.GenerateResource.Cache
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\bin\Debug\dents.exe
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\bin\Debug\dents.pdb
-c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\bin\Debug\MaterialSkin.pdb
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.exe
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.pdb
 c:\users\elise andrea lazatin\documents\visual studio 2015\Projects\dents\dents\obj\Debug\dents.Login.resources
@@ -16,3 +13,4 @@ C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\
 C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.AddPatient.resources
 C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.Logs.resources
 C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\obj\Debug\dents.Settings.resources
+C:\Users\Elise Andrea Lazatin\Documents\Visual Studio 2015\Projects\dents\dents\bin\Debug\dents.exe.config
